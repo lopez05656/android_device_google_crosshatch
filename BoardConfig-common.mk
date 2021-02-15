@@ -54,6 +54,11 @@ BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
+TARGET_KERNEL_CONFIG := b1c1_defconfig
+BOARD_KERNEL_IMAGE_NAME := Image.lz4
 
 # DTBO partition definitions
 BOARD_PREBUILT_DTBOIMAGE := device/google/crosshatch-kernel/dtbo.img
