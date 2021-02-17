@@ -47,7 +47,7 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
-TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
+BOARD_KERNEL_IMAGE_NAME += Image.lz4
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
