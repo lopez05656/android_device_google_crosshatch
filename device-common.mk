@@ -88,14 +88,6 @@ PRODUCT_PROPERTY_OVERRIDES += aaudio.hw_burst_min_usec=2000
 # A2DP offload enabled for compilation
 AUDIO_FEATURE_ENABLED_A2DP_OFFLOAD := true
 
-# Active Edge
-PRODUCT_PACKAGES += \
-    ElmyraService
-
-# Eleven
-PRODUCT_PACKAGES += \
-    Eleven
-
 # A2DP offload supported
 PRODUCT_PROPERTY_OVERRIDES += \
 ro.bluetooth.a2dp_offload.supported=true

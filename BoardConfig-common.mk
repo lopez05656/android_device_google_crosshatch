@@ -33,7 +33,6 @@ TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
-TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
 
 TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
 
@@ -48,6 +47,7 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
+TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
