@@ -48,8 +48,24 @@ BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
 
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
+TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
+TARGET_KERNEL_CONFIG := b1c1_defconfig
+TARGET_KERNEL_ARCH := arm64
+BOARD_KERNEL_IMAGE_NAME := Image3.lz4
+
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
+ifeq ($(filter-out crosshatch_kasan blueline_kasan, $(TARGET_PRODUCT)),)
+BOARD_KERNEL_OFFSET      := 0x80000
+BOARD_KERNEL_TAGS_OFFSET := 0x02500000
+BOARD_RAMDISK_OFFSET     := 0x02700000
+BOARD_MKBOOTIMG_ARGS     := --kernel_offset $(BOARD_KERNEL_OFFSET) --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
+else
+BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
+BOARD_RAMDISK_OFFSET     := 0x02000000
+endif
 
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 2

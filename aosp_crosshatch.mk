@@ -53,7 +53,7 @@ PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 
 
 PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_crosshatch
+PRODUCT_NAME := evolution_crosshatch
 PRODUCT_DEVICE := crosshatch
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on crosshatch
+PRODUCT_BRAND := google
+PRODUCT_MODEL := crosshatch
