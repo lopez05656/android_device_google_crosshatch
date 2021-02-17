@@ -19,9 +19,5 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/evolution_blueline.mk
 
 COMMON_LUNCH_CHOICES := \
-    evolution_crosshatch-user \
     evolution_crosshatch-userdebug \
-    evolution_crosshatch-eng \
-    evolution_blueline-user \
-    evolution_blueline-userdebug \
-    evolution_blueline-eng
+    evolution_blueline-userdebug
