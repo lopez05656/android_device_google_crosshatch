@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-$(call inherit-product, device/google/crosshatch/device_blueline.mk)
+$(call inherit-product, device/google/crosshatch/device-blueline.mk)
 
 # Inherit some common Evolution X stuff.
 EVO_BUILD_TYPE := UNOFFICIAL
