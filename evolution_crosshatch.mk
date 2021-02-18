@@ -42,7 +42,7 @@ TARGET_INCLUDE_WIFI_EXT := true
 $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
 # Inherit AOSP stuff
-$(call inherit-product, device/google/crosshatch/device-crosshatch.mk)
+$(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
 $(call inherit-product-if-exists, vendor/google_devices/crosshatch/proprietary/crosshatch-vendor.mk)
 
 PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml

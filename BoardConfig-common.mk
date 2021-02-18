@@ -14,8 +14,6 @@
 # limitations under the License.
 #
 
-COMMON_PATH := device/google/crosshatch
-
 include build/make/target/board/BoardConfigMainlineCommon.mk
 
 TARGET_BOARD_PLATFORM := sdm845
@@ -23,25 +21,23 @@ TARGET_BOARD_INFO_FILE := device/google/crosshatch/board-info.txt
 USES_DEVICE_GOOGLE_B1C1 := true
 
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-2a
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo385
+TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-2a
+TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := kryo385
+TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
 
 BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
-BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 
-BOARD_KERNEL_CMDLINE += androidboot.verifiedbootstate=green androidboot.veritym>
-BOARD_KERNEL_CMDLINE += androidboot.vbmeta.device_state=locked
 BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 printk.devkmsg=on
 BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
 BOARD_KERNEL_CMDLINE += ehci-hcd.park=3
@@ -59,11 +55,7 @@ BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
 
-# vendor.img
-ifneq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
-BOARD_VENDORIMAGE_PARTITION_SIZE := 805306368
-endif
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
 
 # DTBO partition definitions
 BOARD_PREBUILT_DTBOIMAGE := device/google/crosshatch-kernel/dtbo.img
@@ -80,7 +72,6 @@ AB_OTA_PARTITIONS += \
     boot \
     system \
     vbmeta \
-    vendor \
     dtbo
 
 # Skip product and system_ext partition for nodap build
@@ -114,10 +105,6 @@ BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
 endif
-
-# Disable DM-verity
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
 
 # product.img
 ifneq ($(PRODUCT_NO_PRODUCT_PARTITION), true)
@@ -270,6 +257,9 @@ AUDIO_FEATURE_ENABLED_24BITS_CAMCORDER := true
 TARGET_USES_GRALLOC1 := true
 TARGET_USES_HWC2 := true
 
+VSYNC_EVENT_PHASE_OFFSET_NS := 2000000
+SF_VSYNC_EVENT_PHASE_OFFSET_NS := 6000000
+
 # Display
 TARGET_HAS_WIDE_COLOR_DISPLAY := true
 TARGET_HAS_HDR_DISPLAY := true
@@ -358,9 +348,6 @@ else ifneq (,$(TARGET_PREBUILT_KERNEL))
 else
 BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel
 endif
-
-# ConfirmationUI
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/confirmationui_hal
 
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/b1c1-setup.sh
