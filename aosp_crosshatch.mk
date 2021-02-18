@@ -51,22 +51,16 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/
 
 PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 
+PRODUCT_MANUFACTURER := Google
+PRODUCT_NAME := aosp_crosshatch
+PRODUCT_DEVICE := crosshatch
+PRODUCT_BRAND := google
+PRODUCT_MODEL := Pixel 3 XL
 EXTRA_FOD_ANIMATIONS := true
 TARGET_BOOT_ANIMATION_RES := 1440
 WITH_GAPPS := true
 EVO_MAINTAINER := lopez05656
 
-PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_crosshatch
-PRODUCT_DEVICE := crosshatch
-PRODUCT_BRAND := Google
-PRODUCT_MODEL := Pixel 3 XL
+LOCAL_PATH := device/google/crosshatch
 
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME="crosshatch" \
-    PRIVATE_BUILD_DESC="crosshatch-user 11 RQ1A.210205.004 7038034 release-keys"
-
-BUILD_FINGERPRINT := "google/crosshatch/crosshatch:11/RQ1A.210205.004/7038034:user/release-keys"
-
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.fingerprint=google/crosshatch/crosshatch:11/RQ1A.210205.004/7038034:user/release-keys
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/crosshatch.prop
