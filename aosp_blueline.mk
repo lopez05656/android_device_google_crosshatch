@@ -51,12 +51,13 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/
 
 PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 
+
 PRODUCT_MANUFACTURER := Google
 PRODUCT_NAME := aosp_blueline
 PRODUCT_DEVICE := blueline
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3
-
-LOCAL_PATH := device/google/crosshatch
-
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/blueline.prop
+EXTRA_FOD_ANIMATIONS := true
+TARGET_BOOT_ANIMATION_RES := 1440
+WITH_GAPPS := true
+EVO_MAINTAINER := lopez05656

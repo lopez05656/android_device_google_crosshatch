@@ -60,7 +60,3 @@ EXTRA_FOD_ANIMATIONS := true
 TARGET_BOOT_ANIMATION_RES := 1440
 WITH_GAPPS := true
 EVO_MAINTAINER := lopez05656
-
-LOCAL_PATH := device/google/crosshatch
-
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/crosshatch.prop
