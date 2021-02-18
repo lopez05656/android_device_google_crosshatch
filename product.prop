@@ -1,3 +1,21 @@
+# Pixel identification
+ro.build.fingerprint=google/redfin/redfin:11/RQ1A.210105.003/7005429:user/release-keys
+ro.product.manufacturer=Google
+ro.product.device=crosshatch
+ro.product.brand=google
+ro.product.name=redfin
+ro.product.model=Pixel 5
+
+# Missing props from build.prop diff
+persist.vendor.radio.mt_sms_ack=30
+ro.storage_manager.enabled=true
+ro.com.android.prov_mobiledata=false
+vendor.power.pasr.enabled=true
+ro.zram.first_wb_delay_mins=1440
+
+# dex2oat64
+dalvik.vm.dex2oat64.enabled=true
+ro.sys.fw.dex2oat_thread_count=8
 
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
@@ -12,6 +30,11 @@ DEVICE_PROVISIONED=1
 
 debug.sf.hw=1
 debug.gralloc.enable_fb_ubwc=1
+
+# Graphics stack
+ro.hardware.egl=adreno
+ro.hardware.vulkan=adreno
+ro.gfx.angle.supported=true
 
 # system props for the cne module
 persist.vendor.cne.feature=1
