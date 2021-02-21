@@ -17,11 +17,18 @@
 #
 # All components inherited here go to system image
 #
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
 
 # Enable mainline checking
 # TODO(b/138706293): enable Enable mainline checking later
 #PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
+
+#
+# All components inherited here go to system_ext image
+#
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_system_ext.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_system_ext.mk)
 
 #
 # All components inherited here go to product image
@@ -32,9 +39,27 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_product.mk)
 # All components inherited here go to vendor image
 #
 # TODO(b/136525499): move *_vendor.mk into the vendor makefile later
+$(call inherit-product, $(SRC_TARGET_DIR)/product/handheld_vendor.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/telephony_vendor.mk)
 $(call inherit-product, device/google/crosshatch/device-blueline.mk)
+$(call inherit-product-if-exists, vendor/google_devices/crosshatch/proprietary/device-vendor.mk)
+
+PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml
 
 # STOPSHIP deal with Qualcomm stuff later
 # PRODUCT_RESTRICT_VENDOR_FILES := all
 
 PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+
+# Inherit some common Evolution X stuff.
+TARGET_BOOT_ANIMATION_RES := 1440
+TARGET_GAPPS_ARCH := arm64
+EVO_MAINTAINER := lopez05656
+TARGET_INCLUDE_STOCK_ARCORE := true
+TARGET_INCLUDE_WIFI_EXT := true
+
+PRODUCT_MANUFACTURER := Google
+PRODUCT_NAME := aosp_blueline
+PRODUCT_DEVICE := blueline
+PRODUCT_BRAND := Google
+PRODUCT_MODEL := Pixel 3
