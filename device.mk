@@ -169,6 +169,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sys.sdcardfs=1
 
+# Enable blurs
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.surface_flinger.supports_background_blur=1
+
 PRODUCT_PACKAGES += \
     bootctrl.sdm845 \
     bootctrl.sdm845.recovery
