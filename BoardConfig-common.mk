@@ -34,11 +34,6 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
-TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
-TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
-
-TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
-
 BUILD_BROKEN_DUP_RULES := true
 
 BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 printk.devkmsg=on
@@ -50,6 +45,14 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
+
+TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
+TARGET_KERNEL_CLANG_COMPILE := true
+TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
+TARGET_KERNEL_CONFIG := b1c1_defconfig
+TARGET_KERNEL_ARCH := arm64
+BOARD_KERNEL_IMAGE_NAME := Image.lz4
+TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
