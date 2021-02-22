@@ -169,10 +169,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.sys.sdcardfs=1
 
-# Enable blurs
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.surface_flinger.supports_background_blur=1
-
 PRODUCT_PACKAGES += \
     bootctrl.sdm845 \
     bootctrl.sdm845.recovery
@@ -195,6 +191,10 @@ AB_OTA_POSTINSTALL_CONFIG += \
     POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
     FILESYSTEM_TYPE_vendor=ext4 \
     POSTINSTALL_OPTIONAL_vendor=true
+
+# Enable blurs
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.surface_flinger.supports_background_blur=1
 
 PRODUCT_PACKAGES += \
     update_engine_sideload \

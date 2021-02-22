@@ -36,6 +36,8 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
 
+TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
+
 BUILD_BROKEN_DUP_RULES := true
 
 BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 printk.devkmsg=on
@@ -54,8 +56,6 @@ BOARD_KERNEL_PAGESIZE    := 4096
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_BOOT_HEADER_VERSION := 2
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOT_HEADER_VERSION)
-
-TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
 
 # DTBO partition definitions
 BOARD_PREBUILT_DTBOIMAGE := device/google/crosshatch-kernel/dtbo.img
