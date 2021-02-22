@@ -35,6 +35,7 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
+TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
 
 TARGET_PREBUILT_KERNEL := device/google/crosshatch-kernel/Image.lz4
 
