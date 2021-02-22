@@ -61,5 +61,9 @@ TARGET_INCLUDE_WIFI_EXT := true
 PRODUCT_MANUFACTURER := Google
 PRODUCT_NAME := aosp_blueline
 PRODUCT_DEVICE := blueline
-PRODUCT_BRAND := Google
+PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3
+
+LOCAL_PATH := device/google/crosshatch
+
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/blueline.prop
