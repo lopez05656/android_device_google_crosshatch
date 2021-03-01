@@ -53,4 +53,4 @@ BUILD_FINGERPRINT := "google/blueline/blueline:11/RQ1A.210105.003/7005429:user/r
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.fingerprint=google/blueline/blueline:11/RQ1A.210105.003/7005429:user/release-keys
 
-$(call inherit-product-if-exists, vendor/google_devices/blueline/blueline-vendor.mk)
+$(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)
