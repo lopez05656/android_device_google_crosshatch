@@ -51,19 +51,9 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/
 
 PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 
-# Inherit some common Evolution X stuff.
-TARGET_BOOT_ANIMATION_RES := 1440
-TARGET_GAPPS_ARCH := arm64
-EVO_MAINTAINER := lopez05656
-TARGET_INCLUDE_STOCK_ARCORE := true
-TARGET_INCLUDE_WIFI_EXT := true
 
 PRODUCT_MANUFACTURER := Google
 PRODUCT_NAME := aosp_crosshatch
 PRODUCT_DEVICE := crosshatch
-PRODUCT_BRAND := google
-PRODUCT_MODEL := Pixel 3 XL
-
-LOCAL_PATH := device/google/crosshatch
-
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/crosshatch.prop
+PRODUCT_BRAND := Android
+PRODUCT_MODEL := AOSP on crosshatch
