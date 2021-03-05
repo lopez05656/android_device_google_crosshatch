@@ -29,7 +29,6 @@ $(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
 
 # Inherit from the common Open Source product configuration
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 
 PRODUCT_NAME := evolution_crosshatch
 PRODUCT_DEVICE := crosshatch
