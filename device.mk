@@ -62,6 +62,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Eleven
 
+# Camera
+PRODUCT_PACKAGES += \
+    GoogleCamera
+
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += chre_test_client
 endif
