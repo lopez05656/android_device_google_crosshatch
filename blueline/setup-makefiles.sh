@@ -24,10 +24,9 @@ INITIAL_COPYRIGHT_YEAR=2018
 # Load extractutils and do some sanity checks
 MY_DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$MY_DIR" ]]; then MY_DIR="$PWD"; fi
+EVOLUTION_ROOT="$MY_DIR"/../../../..
 
-PIXELDUST_ROOT="$MY_DIR"/../../../..
-
-HELPER="$PIXELDUST_ROOT"/vendor/pixeldust/build/tools/extract_utils.sh
+HELPER="$EVOLUTION_ROOT"/vendor/evolution/build/tools/extract_utils.sh
 if [ ! -f "$HELPER" ]; then
     echo "Unable to find helper script at $HELPER"
     exit 1
@@ -35,7 +34,7 @@ fi
 . "$HELPER"
 
 # Initialize the helper
-setup_vendor "$DEVICE" "$VENDOR" "$PIXELDUST_ROOT"
+setup_vendor "$DEVICE" "$VENDOR" "$EVOLUTION_ROOT"
 
 # Copyright headers and guards
 write_headers
