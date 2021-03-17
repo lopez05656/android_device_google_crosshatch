@@ -1,7 +1,0 @@
-# Pixel identification
-ro.build.fingerprint=google/crosshatch/crosshatch:11/RQ2A.210305.006/7119741:user/release-keys
-ro.product.manufacturer=Google
-ro.product.device=crosshatch
-ro.product.brand=google
-ro.product.name=crosshatch
-ro.product.model=Pixel 3 XL
