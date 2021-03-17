@@ -46,6 +46,7 @@
 #include <dirent.h>
 #include <inttypes.h>
 #include <linux/kernel.h>
+#include <asm/byteorder.h>
 #include <map>
 #include <vector>
 #include <string>

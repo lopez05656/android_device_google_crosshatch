@@ -21,8 +21,8 @@
 # lines, aosp and du, hence its name.
 #
 
-# Include Fluid common configuration
-$(call inherit-product, vendor/fluid/config/common_full_phone.mk)
+# Include Evolution-X common configuration
+$(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/crosshatch/aosp_blueline.mk)

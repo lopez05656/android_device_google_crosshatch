@@ -44,16 +44,15 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.verified_boot.xml
 
 # Enforce privapp-permissions whitelist
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.control_privapp_permissions=enforce
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.control_privapp_permissions=enforce
 
 # Enable on-access verification of priv apps. This requires fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.apk_verity.mode=1
 
 PRODUCT_PACKAGES += \
-    messaging \
-    netutils-wrapper-1.0
+    messaging
 
 # Elmyra
 PRODUCT_PACKAGES += \
@@ -82,15 +81,15 @@ $(call inherit-product, $(LOCAL_PATH)/utils.mk)
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
 
-#ifeq ($(wildcard vendor/google_devices/crosshatch/proprietary/device-vendor-crosshatch.mk),)
-#    BUILD_WITHOUT_VENDOR := true
-#endif
+ifeq ($(wildcard vendor/google_devices/crosshatch/proprietary/device-vendor-crosshatch.mk),)
+    BUILD_WITHOUT_VENDOR := true
+endif
 
-#ifeq ($(TARGET_PREBUILT_KERNEL),)
-#    LOCAL_KERNEL := device/google/crosshatch-kernel/Image.lz4
-#else
-#    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
-#endif
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+    LOCAL_KERNEL := device/google/crosshatch-kernel/Image.lz4
+else
+    LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
 
 PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_SHIPPING_API_LEVEL := 28
@@ -98,6 +97,7 @@ PRODUCT_SHIPPING_API_LEVEL := 28
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 PRODUCT_COPY_FILES += \
+    $(LOCAL_KERNEL):kernel \
     $(LOCAL_PATH)/init.recovery.hardware.rc:recovery/root/init.recovery.$(PRODUCT_PLATFORM).rc \
     $(LOCAL_PATH)/init.hardware.usb.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).usb.rc \
     $(LOCAL_PATH)/ueventd.hardware.rc:$(TARGET_COPY_OUT_VENDOR)/ueventd.rc \
@@ -342,10 +342,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.rild.libpath=/vendor/lib64/libril-qc-hal-qmi.so \
     ro.hardware.keystore_desede=true \
 
-# Native video calling
-PRODUCT_PROPERTY_OVERRIDES += \
-    persist.dbg.vt_avail_ovr=1
-
 # Disable snapshot timer
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.snapshot_enabled=0 \
@@ -554,6 +550,7 @@ endif
 
 # Wifi
 PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service \
     wificond \
     libwpa_client \
     WifiOverlay
@@ -636,7 +633,7 @@ PRODUCT_COPY_FILES += \
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 # Subsystem ramdump
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.vendor.sys.ssr.enable_ramdumps=0
+    persist.vendor.sys.ssr.enable_ramdumps=1
 endif
 
 # Subsystem silent restart
@@ -650,7 +647,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.debug.ash.logger.time=0
 endif
 
-# Setup Dalvik VM configurations
+# setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
 
 ifneq ($(filter %_mainline,$(TARGET_PRODUCT)),)
@@ -796,7 +793,7 @@ PRODUCT_COPY_FILES += \
 # Keymaster configuration
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
-    frameworks/native/data/etc/android.hardware.device_unique_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.device_unique_attestation.xml
+     frameworks/native/data/etc/android.hardware.device_unique_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.device_unique_attestation.xml
 
 # Enable modem logging
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -858,8 +855,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.svn=47
 
-#PRODUCT_PRODUCT_PROPERTIES += \
-#    ro.adb.secure=1
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.adb.secure=1
 
 # pixel atrace HAL
 PRODUCT_PACKAGES += \
@@ -909,63 +906,3 @@ include hardware/google/pixel/thermal/device.mk
 
 # power HAL
 -include hardware/google/pixel/power-libperfmgr/aidl/device.mk
-
-# Build necessary packages for system from AOSP
-PRODUCT_PACKAGES += \
-    libmediaplayerservice \
-    libstagefright_httplive:64
-
-# Build necessary packages for vendor from AOSP
-PRODUCT_PACKAGES += \
-    chre \
-    ese_spi_nxp:64 \
-    hardware.google.light@1.0.vendor \
-    libavservices_minijail_vendor:32 \
-    libcodec2_hidl@1.0.vendor:32 \
-    libcodec2_vndk.vendor \
-    libcppbor.vendor:64 \
-    libdisplayconfig \
-    libdrm.vendor \
-    libhidltransport.vendor \
-    libhwbinder.vendor \
-    libjson \
-    libkeymaster_messages.vendor:64 \
-    libkeymaster_portable.vendor:64 \
-    libnetfilter_conntrack:64 \
-    libnfnetlink:64 \
-    libnos:64 \
-    libnos_client_citadel:64 \
-    libnos_datagram:64 \
-    libnos_datagram_citadel:64 \
-    libnosprotos:64 \
-    libnos_transport:64 \
-    libpuresoftkeymasterdevice.vendor:64 \
-    libsensorndkbridge \
-    libsoft_attestation_cert.vendor:64 \
-    libteeui_hal_support.vendor:64 \
-    libtinycompress \
-    libtinyxml \
-    libwifi-hal:64 \
-    libwifi-hal-qcom \
-    nos_app_avb:64 \
-    nos_app_identity:64 \
-    nos_app_keymaster:64 \
-    nos_app_weaver:64 \
-    vendor.display.config@1.0.vendor \
-    vendor.display.config@1.1.vendor \
-    vendor.display.config@1.2.vendor \
-    vendor.display.config@1.3.vendor
-
-# EUICC
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.telephony.euicc.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.hardware.telephony.euicc.xml
-
-# RCS
-PRODUCT_PACKAGES += \
-    com.android.ims.rcsmanager \
-    PresencePolling \
-    RcsService
-
-# Shared java libs
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras
