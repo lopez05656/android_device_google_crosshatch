@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2018 The Android Open Source Project
+<!-- Copyright 2017 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,12 +15,10 @@
 -->
 
 <resources>
-    <!-- Whether or not the device is capable of multiple levels of vibration intensity.
-         Note that this is different from whether it can control the vibration amplitude as some
-         devices will be able to vary their amplitude but do not possess enough dynamic range to
-         have distinct intensity levels -->
-    <bool name="config_vibration_supports_multiple_intensities">true</bool>
-
-    <!-- Whether to show Connected MAC Randomization in Developer Options. -->
-    <bool name="config_wifi_support_connected_mac_randomization">true</bool>
+    <!-- Specify a service to bind to that returns an implementation of the
+         IApnSourceService interface.
+         (e.g. com.foo/.Bar for the package com.foo and class com.foo.Bar)
+         If this value is empty or unparsable, we will apply APNs from the APN
+         conf xml file.  -->
+    <string name="apn_source_service">com.google.android.carrier/.ApnSourceService</string>
 </resources>

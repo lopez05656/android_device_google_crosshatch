@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
-BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
-
 include build/make/target/board/BoardConfigMainlineCommon.mk
 
 TARGET_BOARD_PLATFORM := sdm845
@@ -27,14 +24,14 @@ TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo385
+TARGET_CPU_VARIANT := cortex-a75
 TARGET_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := kryo385
+TARGET_2ND_CPU_VARIANT := cortex-a75
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
@@ -52,7 +49,7 @@ BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
+TARGET_KERNEL_SOURCE := kernel/google/bluecross
 TARGET_KERNEL_CONFIG := b1c1_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.lz4
 

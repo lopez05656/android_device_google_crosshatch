@@ -1,0 +1,27 @@
+[
+ {
+   "repository":  "ScorpionRom-Devices/device_google_crosshatch-sepolicy",
+   "target_path": "device/google/crosshatch-sepolicy",
+   "branch":      "sr4"
+ },
+ {
+   "repository":  "ScorpionRom-Devices/kernel_google_bluecross",
+   "target_path": "kernel/google/bluecross",
+   "branch":      "sr4"
+ },
+ {
+   "repository":  "ScorpionRom-Devices/vendor_google",
+   "target_path": "vendor/google",
+   "branch":      "sr4"
+ },
+ {
+   "repository":  "ScorpionRom/vendor_qcom_opensource_interfaces",
+   "target_path": "vendor/qcom/opensource/interfaces",
+   "branch":      "sr4"
+ },
+ {
+   "repository":  "vendor_pixelgapps",
+   "target_path": "vendor/pixelgapps",
+   "branch":      "sr4"
+ }
+]
