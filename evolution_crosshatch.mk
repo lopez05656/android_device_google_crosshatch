@@ -23,6 +23,7 @@
 
 # Include Evolution common configuration
 $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)

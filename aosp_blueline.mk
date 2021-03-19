@@ -17,7 +17,6 @@
 #
 # All components inherited here go to system image
 #
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
 
 # Enable mainline checking
@@ -55,5 +54,5 @@ PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 PRODUCT_MANUFACTURER := Google
 PRODUCT_NAME := aosp_blueline
 PRODUCT_DEVICE := blueline
-PRODUCT_BRAND := Android
-PRODUCT_MODEL := AOSP on blueline
+PRODUCT_BRAND := google
+PRODUCT_MODEL := Pixel 3
