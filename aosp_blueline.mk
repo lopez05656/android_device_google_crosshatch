@@ -24,6 +24,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
 # TODO(b/138706293): enable Enable mainline checking later
 #PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
 
+# Inherit Evolution-X product configuration
+TARGET_INCLUDE_STOCK_ARCORE := true
+TARGET_INCLUDE_WIFI_EXT := true
+TARGET_BOOT_ANIMATION_RES := 1440
+TARGET_GAPPS_ARCH := arm64
+EVO_MAINTAINER := lopez05656
+
 #
 # All components inherited here go to system_ext image
 #
@@ -52,7 +59,7 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/
 PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
 
 PRODUCT_MANUFACTURER := Google
-PRODUCT_NAME := aosp_blueline
+PRODUCT_NAME := evolution_blueline
 PRODUCT_DEVICE := blueline
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3
