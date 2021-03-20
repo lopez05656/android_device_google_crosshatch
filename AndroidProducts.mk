@@ -19,7 +19,3 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_blueline.mk \
     $(LOCAL_DIR)/aosp_crosshatch_hwasan.mk \
     $(LOCAL_DIR)/aosp_blueline_hwasan.mk
-
-#COMMON_LUNCH_CHOICES := \
-#    aosp_crosshatch-userdebug \
-#    aosp_blueline-userdebug
