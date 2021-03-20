@@ -24,13 +24,6 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
 # TODO(b/138706293): enable Enable mainline checking later
 #PRODUCT_ENFORCE_ARTIFACT_PATH_REQUIREMENTS := relaxed
 
-# Inherit Evolution-X product configuration
-TARGET_INCLUDE_STOCK_ARCORE := true
-TARGET_INCLUDE_WIFI_EXT := true
-TARGET_BOOT_ANIMATION_RES := 1440
-TARGET_GAPPS_ARCH := arm64
-EVO_MAINTAINER := lopez05656
-
 #
 # All components inherited here go to system_ext image
 #
