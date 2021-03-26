@@ -48,3 +48,9 @@ on property:sys.boot_completed=1
     # HardwareInfo needs to be able to read display info
     chmod 644 /sys/devices/platform/soc/soc:qcom,dsi-display@52/panel_info/panel0/serial_number
     chmod 644 /sys/devices/platform/soc/soc:qcom,dsi-display@52/panel_info/panel0/panel_vendor_name
+
+# Smartcharge Permissions
+    chown system system /sys/class/power_supply/battery/charging_enabled 
+    chmod 0666 /sys/class/power_supply/battery/charging_enabled
+    chown system system /sys/class/power_supply/battery/input_suspend
+    chmod 0666 /sys/class/power_supply/battery/input_suspend
