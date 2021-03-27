@@ -15,6 +15,10 @@
 -->
 
 <resources>
-    <!-- Whether to show a preference item for mobile plan -->
-    <bool name="config_show_mobile_plan">false</bool>
+    <!-- Specify a service to bind to that returns an implementation of the
+         IApnSourceService interface.
+         (e.g. com.foo/.Bar for the package com.foo and class com.foo.Bar)
+         If this value is empty or unparsable, we will apply APNs from the APN
+         conf xml file.  -->
+    <string name="apn_source_service">com.google.android.carrier/.ApnSourceService</string>
 </resources>

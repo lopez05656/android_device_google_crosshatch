@@ -38,13 +38,14 @@ PRODUCT_PRODUCT_PROPERTIES += \
     masterclear.allow_retain_esim_profiles_after_fdr=true
 
 PRODUCT_COPY_FILES += \
+    device/google/crosshatch/default-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions.xml \
     device/google/crosshatch/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.verified_boot.xml
 
-# Privapp-permissions whitelist
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.control_privapp_permissions=log
+# Enforce privapp-permissions whitelist
+#PRODUCT_PROPERTY_OVERRIDES += \
+#    ro.control_privapp_permissions=enforce
 
 # Enable on-access verification of priv apps. This requires fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -64,7 +65,7 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    GoogleCamera
+    GoogleCamera 
 
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += chre_test_client
@@ -118,10 +119,6 @@ PRODUCT_COPY_FILES += \
 # TODO: b/67205273
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.edge_sense.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.edge_sense.sh
-
-# This adds an initialization script to apply custom init.rc entries
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/init.custom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.custom.rc \
 
 ifeq (,$(filter %_xr,$(TARGET_PRODUCT)))
   PRODUCT_COPY_FILES += \
@@ -798,7 +795,8 @@ PRODUCT_COPY_FILES += \
 
 # Keymaster configuration
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
+    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
+    frameworks/native/data/etc/android.hardware.device_unique_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.device_unique_attestation.xml
 
 # Enable modem logging
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -825,7 +823,7 @@ endif
 
 # Preopt SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUI
+    SystemUIGoogle
 
 # Enable stats logging in LMKD
 TARGET_LMKD_STATS_LOG := true
@@ -859,6 +857,9 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 # Increment the SVN for any official public releases
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.svn=47
+
+#PRODUCT_PRODUCT_PROPERTIES += \
+#    ro.adb.secure=1
 
 # pixel atrace HAL
 PRODUCT_PACKAGES += \
@@ -939,7 +940,6 @@ PRODUCT_PACKAGES += \
     libnosprotos:64 \
     libnos_transport:64 \
     libpuresoftkeymasterdevice.vendor:64 \
-    libsdsprpc \
     libsensorndkbridge \
     libsoft_attestation_cert.vendor:64 \
     libteeui_hal_support.vendor:64 \
@@ -954,16 +954,7 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.0.vendor \
     vendor.display.config@1.1.vendor \
     vendor.display.config@1.2.vendor \
-    vendor.display.config@1.3.vendor \
-    vendor.display.config@1.0 \
-    vendor.display.config@1.1 \
-    vendor.display.config@1.2 \
-    vendor.display.config@1.3 \
-    vendor.display.config@1.4 \
-    vendor.display.config@1.5 \
-    vendor.display.config@1.6 \
-    vendor.display.config@1.7 \
-    vendor.display.config@1.8
+    vendor.display.config@1.3.vendor
 
 # EUICC
 PRODUCT_COPY_FILES += \
@@ -975,11 +966,11 @@ PRODUCT_PACKAGES += \
     PresencePolling \
     RcsService
 
+# Shared java libs
+PRODUCT_PACKAGES += \
+    com.android.nfc_extras
+
 # Enable blurs
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1 \
     ro.sf.blurs_are_expensive=1
-
-# Force triple frame buffers
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.surface_flinger.max_frame_buffer_acquired_buffers=3

@@ -1,1 +1,0 @@
-crosshatch/extract-files.sh
