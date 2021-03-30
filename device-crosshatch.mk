@@ -16,7 +16,7 @@
 
 PRODUCT_HARDWARE := crosshatch
 
-include device/google/crosshatch/device-common.mk
+include device/google/bluecross/device-common.mk
 
 DEVICE_PACKAGE_OVERLAYS += device/google/bluecross/crosshatch/overlay
 
