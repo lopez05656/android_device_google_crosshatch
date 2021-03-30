@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-$(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
+$(call inherit-product, device/google/bluecross/aosp_crosshatch.mk)
 PRODUCT_NAME := aosp_crosshatch_hwasan
 
 # Add "hwaddress" as a global sanitizer if it's missing.

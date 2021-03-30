@@ -25,7 +25,7 @@
 $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
+$(call inherit-product, device/google/bluecross/aosp_blueline.mk)
 
 PRODUCT_NAME := evolution_blueline
 PRODUCT_DEVICE := blueline
