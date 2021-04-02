@@ -40,4 +40,13 @@ TARGET_BOOT_ANIMATION_RES := 1440
 TARGET_GAPPS_ARCH := arm64
 EVO_MAINTAINER := lopez05656
 
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME="blueline" \
+    PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210305.006 7119741 release-keys"
+
+BUILD_FINGERPRINT := "google/blueline/blueline:11/RQ2A.210305.006/7119741:user/release-keys"
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.fingerprint=google/blueline/blueline:11/RQ2A.210305.006/7119741:user/release-keys
+
 $(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)

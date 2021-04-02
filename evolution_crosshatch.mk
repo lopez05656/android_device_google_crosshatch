@@ -40,4 +40,13 @@ TARGET_BOOT_ANIMATION_RES := 1440
 TARGET_GAPPS_ARCH := arm64
 EVO_MAINTAINER := lopez05656
 
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME="crosshatch" \
+    PRIVATE_BUILD_DESC="crosshatch-user 11 RQ2A.210305.006 7119741 release-keys"
+
+BUILD_FINGERPRINT := "google/crosshatch/crosshatch:11/RQ2A.210305.006/7119741:user/release-keys"
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.fingerprint=google/crosshatch/crosshatch:11/RQ2A.210305.006/7119741:user/release-keys
+
 $(call inherit-product-if-exists, vendor/google/crosshatch/crosshatch-vendor.mk)
