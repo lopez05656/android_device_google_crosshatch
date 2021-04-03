@@ -52,7 +52,7 @@ BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
 TARGET_KERNEL_CLANG_COMPILE := true
 TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
-TARGET_KERNEL_CONFIG := b1c1_defconfig
+TARGET_KERNEL_CONFIG := elementalx_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.lz4
 
 BOARD_KERNEL_BASE        := 0x00000000
