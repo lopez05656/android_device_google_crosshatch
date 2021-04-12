@@ -3,5 +3,5 @@ ro.build.fingerprint=google/redfin/redfin:11/RQ2A.210405.005/7181113:user/releas
 ro.product.manufacturer=Google
 ro.product.device=blueline
 ro.product.brand=google
-ro.product.name=redfin
-ro.product.model=Pixel 5
+ro.product.name=blueline
+ro.product.model=Pixel 3
