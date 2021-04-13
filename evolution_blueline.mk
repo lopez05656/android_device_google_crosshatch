@@ -21,7 +21,7 @@
 # lines, aosp and du, hence its name.
 #
 
-# Include Fluid common configuration
+# Include Evolution common configuration
 $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
 
 # Inherit from those products. Most specific first.
