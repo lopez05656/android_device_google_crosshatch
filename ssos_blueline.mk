@@ -21,25 +21,28 @@
 # lines, aosp and du, hence its name.
 #
 
-# Include Evolution common configuration
-$(call inherit-product, vendor/evolution/config/common_full_phone.mk)
+# Include Shapeshift OS common configuration
+$(call inherit-product, vendor/ssos/config/common_full_phone.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/bluecross/aosp_blueline.mk)
 
-PRODUCT_NAME := evolution_blueline
+PRODUCT_NAME := ssos_blueline
 PRODUCT_DEVICE := blueline
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3
 PRODUCT_MANUFACTURER := Google
 
-# Inherit Evolution-X product configuration
-TARGET_INCLUDE_STOCK_ARCORE := true
-TARGET_INCLUDE_WIFI_EXT := true
-TARGET_BOOT_ANIMATION_RES := 1440
+# Gapps Config
+WITH_GAPPS := true
 TARGET_GAPPS_ARCH := arm64
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
+
+# ShapeShift Stuff
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.ssos.cpu=SD845
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
+    PRIVATE_BUILD_DESC="redfin-user 11 RQ2A.210405.005 7181113 release-keys"
 
 $(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)
