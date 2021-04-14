@@ -22,12 +22,12 @@
 #
 
 # Include Evolution common configuration
-$(call inherit-product, vendor/evolution/config/common_full_phone.mk)
+$(call inherit-product, vendor/ssos/config/common_full_phone.mk)
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/bluecross/aosp_crosshatch.mk)
 
-PRODUCT_NAME := evolution_crosshatch
+PRODUCT_NAME := ssos_crosshatch
 PRODUCT_DEVICE := crosshatch
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3 XL
@@ -38,6 +38,9 @@ TARGET_INCLUDE_STOCK_ARCORE := true
 TARGET_INCLUDE_WIFI_EXT := true
 TARGET_BOOT_ANIMATION_RES := 1440
 TARGET_GAPPS_ARCH := arm64
+
+
+
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="crosshatch-user 11 RQ2A.210405.005 7181113 release-keys"
