@@ -33,14 +33,14 @@ PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3 XL
 PRODUCT_MANUFACTURER := Google
 
-# Inherit Evolution-X product configuration
-TARGET_INCLUDE_STOCK_ARCORE := true
-TARGET_INCLUDE_WIFI_EXT := true
-TARGET_BOOT_ANIMATION_RES := 1440
+# Gapps Config
+WITH_GAPPS := true
 TARGET_GAPPS_ARCH := arm64
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
-
-
+# ShapeShift Stuff
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.ssos.cpu=SD845
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="crosshatch-user 11 RQ2A.210405.005 7181113 release-keys"
