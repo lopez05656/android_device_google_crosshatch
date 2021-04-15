@@ -38,6 +38,9 @@ WITH_GAPPS := true
 TARGET_GAPPS_ARCH := arm64
 TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
+# Boot animation
+TARGET_BOOT_ANIMATION_RES := 1440
+
 # ShapeShift Stuff
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.ssos.cpu=SD845
