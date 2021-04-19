@@ -3,5 +3,5 @@ ro.build.fingerprint=google/redfin/redfin:11/RQ2A.210405.005/7181113:user/releas
 ro.product.manufacturer=Google
 ro.product.device=crosshatch
 ro.product.brand=google
-ro.product.name=crosshatch
-ro.product.model=Pixel 3 XL
+ro.product.name=redfin
+ro.product.model=Pixel 5
