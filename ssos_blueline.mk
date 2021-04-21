@@ -34,13 +34,13 @@ PRODUCT_MODEL := Pixel 3
 PRODUCT_MANUFACTURER := Google
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME="crosshatch" \
-    PRIVATE_BUILD_DESC="crosshatch-user 11 RQ2A.210405.005 7181113 release-keys"
+    PRODUCT_NAME="blueline" \
+    PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
 
-BUILD_FINGERPRINT := "google/crosshatch/crosshatch:11/RQ2A.210405.005/7181113:user/release-keys"
+BUILD_FINGERPRINT := "google/blueline/blueline:11/RQ2A.210405.005/7181113:user/release-keys"
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.fingerprint=google/crosshatch/crosshatch:11/RQ2A.210405.005/7181113:user/release-keys
+    ro.build.fingerprint=google/blueline/blueline:11/RQ2A.210405.005/7181113:user/release-keys
 
 # Gapps Config
 WITH_GAPPS := true
@@ -49,10 +49,6 @@ TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
 # Boot animation
 TARGET_BOOT_ANIMATION_RES := 1440
-
-# ShapeShift Stuff
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.ssos.cpu=SD845
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
