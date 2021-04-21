@@ -59,5 +59,3 @@ PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3
 
 LOCAL_PATH := device/google/bluecross
-
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/blueline.prop
