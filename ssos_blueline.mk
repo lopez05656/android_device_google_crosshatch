@@ -35,8 +35,7 @@ PRODUCT_MANUFACTURER := Google
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="blueline" \
-    PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
-
+    PRIVATE_BUILD_DESC="redfin-user 11 RQ2A.210405.005 7181113 release-keys"
 
 BUILD_FINGERPRINT := "google/redfin/redfin:11/RQ2A.210405.005/7181113:user/release-keys"
 
@@ -51,8 +50,5 @@ TARGET_INCLUDE_WIFI_EXT := true
 # ShapeShift specific properties
 PRODUCT_PRODUCT_PROPERTIES += \
   ro.ssos.cpu=SD845
-
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="redfin-user 11 RQ2A.210405.005 7181113 release-keys"
 
 $(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)
