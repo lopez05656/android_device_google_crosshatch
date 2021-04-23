@@ -31,13 +31,15 @@ PRODUCT_NAME := ssos_crosshatch
 PRODUCT_DEVICE := crosshatch
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3 XL
-PRODUCT_MANUFACTURER := Google
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRODUCT_NAME="crosshatch" \
     PRIVATE_BUILD_DESC="redfin-user 11 RQ2A.210405.005 7181113 release-keys"
 
 BUILD_FINGERPRINT := "google/redfin/redfin:11/RQ2A.210405.005/7181113:user/release-keys"
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.build.fingerprint=google/redfin/redfin:11/RQ2A.210405.005/7181113:user/release-keys
 
 # Gapps Config
 TARGET_GAPPS_ARCH := arm64
