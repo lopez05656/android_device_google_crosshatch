@@ -46,6 +46,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 TARGET_GAPPS_ARCH := arm64
 TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
+# ShapeShift specific properties
+PRODUCT_PRODUCT_PROPERTIES += \
+  ro.ssos.cpu=SD845
+
 # Boot animation
 TARGET_BOOT_ANIMATION_RES := 1440
 
