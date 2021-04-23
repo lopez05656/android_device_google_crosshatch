@@ -39,9 +39,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 
 BUILD_FINGERPRINT := "google/redfin/redfin:11/RQ2A.210405.005/7181113:user/release-keys"
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.fingerprint=google/redfin/redfin:11/RQ2A.210405.005/7181113:user/release-keys
-
 # Gapps Config
 TARGET_GAPPS_ARCH := arm64
 TARGET_INCLUDE_STOCK_ARCORE := true
