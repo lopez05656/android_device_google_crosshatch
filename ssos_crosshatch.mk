@@ -43,7 +43,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.build.fingerprint=google/crosshatch/crosshatch:11/RQ2A.210405.005/7181113:user/release-keys
 
 # Gapps Config
-WITH_GAPPS := true
 TARGET_GAPPS_ARCH := arm64
 TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
