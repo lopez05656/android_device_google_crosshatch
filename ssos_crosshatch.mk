@@ -49,7 +49,7 @@ TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
 # ShapeShift specific properties
 PRODUCT_PRODUCT_PROPERTIES += \
-  ro.ssos.cpu=SD845
+  ro.ssos.cpu=SDM845
 
 # Boot animation
 TARGET_BOOT_ANIMATION_RES := 1440
