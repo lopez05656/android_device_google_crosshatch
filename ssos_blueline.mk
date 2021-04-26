@@ -49,6 +49,6 @@ TARGET_INCLUDE_LIVE_WALLPAPERS := true
 
 # ShapeShift specific properties
 PRODUCT_PRODUCT_PROPERTIES += \
-  ro.ssos.cpu=SD845
+  ro.ssos.cpu=SDM845
 
 $(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)
