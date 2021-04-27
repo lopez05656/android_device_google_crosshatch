@@ -16,7 +16,7 @@
 
 TARGET_USERIMAGES_USE_F2FS := true
 
-LOCAL_PATH := device/google/bluecross
+LOCAL_PATH := device/google/crosshatch
 
 # define hardware platform
 PRODUCT_PLATFORM := sdm845
@@ -24,7 +24,7 @@ PRODUCT_PLATFORM := sdm845
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
-include device/google/bluecross/device.mk
+include device/google/crosshatch/device.mk
 
 # Audio fluence, ns, aec property, voice volume steps
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -102,7 +102,7 @@ persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 
 # Modem loging file
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/init.logging.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).logging.rc
+    device/google/crosshatch/init.logging.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.$(PRODUCT_PLATFORM).logging.rc
 
 # Dumpstate HAL
 PRODUCT_PACKAGES += \
@@ -114,7 +114,7 @@ PRODUCT_PACKAGES += \
 
 # whitelisted app
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/qti_whitelist.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/qti_whitelist.xml
+    device/google/crosshatch/qti_whitelist.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/qti_whitelist.xml
 
 PRODUCT_PACKAGES += \
     llkd
@@ -141,3 +141,9 @@ AB_OTA_POSTINSTALL_CONFIG += \
 # Set thermal warm reset
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.thermal_warmreset = true \
+
+# SafetyNet
+PRODUCT_SAFETYNET_MODEL_HACK := true
+
+# GMS
+WITH_GMS_FI := true

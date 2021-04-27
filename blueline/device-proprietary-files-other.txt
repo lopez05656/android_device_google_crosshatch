@@ -2,6 +2,11 @@
 product/etc/firmware/music_detector.descriptor
 product/etc/firmware/music_detector.sound_model
 
+# Felica
+product/etc/felica/common.cfg
+product/etc/felica/mfm.cfg
+product/etc/felica/mfs.cfg
+
 # Bluetooth
 system_ext/lib64/libaptX_encoder.so
 system_ext/lib64/libaptXHD_encoder.so
@@ -23,6 +28,13 @@ system_ext/lib64/vendor.google.wifi_ext@1.0.so
 -product/priv-app/EuiccSupportPixel/EuiccSupportPixel.apk;PRESIGNED
 product/priv-app/EuiccSupportPixel/esim-full-v0.img
 product/priv-app/EuiccSupportPixel/esim-v1.img
+
+# FeliCaClient
+-product/app/MobileFeliCaClient/MobileFeliCaClient.apk;PRESIGNED
+-product/app/MobileFeliCaMenuMainApp/MobileFeliCaMenuMainApp.apk;PRESIGNED
+-product/app/MobileFeliCaSettingApp/MobileFeliCaSettingApp.apk;PRESIGNED
+-product/app/MobileFeliCaWebPlugin/MobileFeliCaWebPlugin.apk;PRESIGNED
+-product/app/MobileFeliCaWebPluginBoot/MobileFeliCaWebPluginBoot.apk;PRESIGNED
 
 # SecureUI
 -product/app/com.qualcomm.qti.services.secureui/com.qualcomm.qti.services.secureui.apk
@@ -64,7 +76,6 @@ vendor/bin/hw/android.hardware.weaver@1.0-service.citadel
 vendor/bin/hw/android.hardware.drm@1.3-service.widevine
 vendor/bin/hw/android.hardware.identity@1.0-service.citadel
 vendor/bin/hw/android.hardware.sensors@2.0-service
-vendor/bin/hw/vendor.qti.esepowermanager@1.0-service
 vendor/bin/hw/android.hardware.rebootescrow-service.citadel
 vendor/bin/hw/citadeld
 vendor/bin/hw/citadel_updater
@@ -268,6 +279,7 @@ vendor/etc/qdcm_calib_data_sw43408_cmd_mode_dsc_dsi_panel.xml
 vendor/etc/sap.conf
 vendor/etc/seccomp_policy/codec2.vendor.base.policy
 vendor/etc/seccomp_policy/codec2.vendor.ext.policy
+vendor/etc/sensors/registry/b1_bmi160_0.json
 vendor/etc/sensors/registry/b1c1_bmp380_0.json
 vendor/etc/sensors/registry/b1c1_camera_vsync_0.json
 vendor/etc/sensors/registry/b1c1_camera_vsync_1.json
@@ -277,14 +289,13 @@ vendor/etc/sensors/registry/b1c1_max11261_0.json
 vendor/etc/sensors/registry/b1c1_max11261_no_pullup.json
 vendor/etc/sensors/registry/b1c1_max11261_rev1_0.json
 vendor/etc/sensors/registry/b1c1_unused_gpio.json
-vendor/etc/sensors/registry/c1_bmi160_0.json
-vendor/etc/sensors/registry/c1_lis2mdl_0.json
-vendor/etc/sensors/registry/c1_lis2mdl_0_proto.json
-vendor/etc/sensors/registry/c1_proto_bmi160_0.json
-vendor/etc/sensors/registry/c1_sx932x_0.json
-vendor/etc/sensors/registry/c1_sx932x_0_no_pullup.json
-vendor/etc/sensors/registry/c1_tmd2725_0.json
-vendor/etc/sensors/registry/c1_touch_gesture_0.json
+vendor/etc/sensors/registry/b1_evt1_bmi160_0.json
+vendor/etc/sensors/registry/b1_lis2mdl_0_evt1.json
+vendor/etc/sensors/registry/b1_lis2mdl_0.json
+vendor/etc/sensors/registry/b1_sx932x_0.json
+vendor/etc/sensors/registry/b1_sx932x_0_no_pullup.json
+vendor/etc/sensors/registry/b1_tmd2725_0.json
+vendor/etc/sensors/registry/b1_touch_gesture_0.json
 vendor/etc/sensors/registry/bmi160_0.json
 vendor/etc/sensors/registry/bmp380_0.json
 vendor/etc/sensors/registry/lis2mdl_0.json
@@ -708,10 +719,10 @@ vendor/lib64/libqmi_common_so.so
 vendor/lib64/libqmi_csi.so
 vendor/lib64/libqmi_encdec.so
 vendor/lib64/libqmi_modem_svc.so
+vendor/lib64/libqmi_thermal-google-1.so
 vendor/lib64/libqmiservices.so
 vendor/lib64/libqmi.so
 vendor/lib64/libqmi_vs-google-1.so
-vendor/lib64/libqmi_thermal-google-1.so
 vendor/lib64/libqrtr.so
 vendor/lib64/libQSEEComAPI.so
 vendor/lib64/libqseed3.so
@@ -814,6 +825,7 @@ vendor/lib64/vendor.qti.hardware.scve.panorama@1.0.so
 vendor/lib64/vendor.qti.power.pasrmanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.googleext.imsext@1.0.so
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
 vendor/lib64/vendor.qti.hardware.data.latency@1.0.so
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so
 vendor/lib64/vendor.qti.hardware.fm@1.0.so
