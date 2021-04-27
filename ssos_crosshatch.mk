@@ -25,7 +25,7 @@
 $(call inherit-product, vendor/ssos/config/common_full_phone.mk)
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/google/bluecross/aosp_crosshatch.mk)
+$(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
 
 PRODUCT_NAME := ssos_crosshatch
 PRODUCT_DEVICE := crosshatch
