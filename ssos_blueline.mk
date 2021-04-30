@@ -42,4 +42,7 @@ TARGET_INCLUDE_LIVE_WALLPAPERS := true
 PRODUCT_PRODUCT_PROPERTIES += \
   ro.ssos.cpu=SDM845
 
+# Boot animation
+TARGET_BOOT_ANIMATION_RES := 1440
+
 $(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)
