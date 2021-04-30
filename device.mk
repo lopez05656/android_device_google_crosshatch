@@ -71,8 +71,8 @@ PRODUCT_PACKAGES += chre_test_client
 endif
 
 LOCAL_PATH := device/google/crosshatch
-SRC_MEDIA_HAL_DIR := hardware/qcom/media/sdm845
-SRC_DISPLAY_HAL_DIR := hardware/qcom/display/sdm845
+SRC_MEDIA_HAL_DIR := hardware/qcom-caf/media/sdm845
+SRC_DISPLAY_HAL_DIR := hardware/qcom-caf/display/sdm845
 
 TARGET_PRODUCT_PROP := $(LOCAL_PATH)/product.prop
 
