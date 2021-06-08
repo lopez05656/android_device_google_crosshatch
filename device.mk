@@ -15,7 +15,7 @@
 #
 
 PRODUCT_SOONG_NAMESPACES += \
-    device/google/bluecross \
+    device/google/crosshatch \
     hardware/google/av \
     hardware/google/camera \
     hardware/google/interfaces \
@@ -38,14 +38,13 @@ PRODUCT_PRODUCT_PROPERTIES += \
     masterclear.allow_retain_esim_profiles_after_fdr=true
 
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/default-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions.xml \
-    device/google/bluecross/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
+    device/google/crosshatch/component-overrides.xml:$(TARGET_COPY_OUT_VENDOR)/etc/sysconfig/component-overrides.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/android.software.verified_boot.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.verified_boot.xml
 
-# Enforce privapp-permissions whitelist
-#PRODUCT_PROPERTY_OVERRIDES += \
-#    ro.control_privapp_permissions=enforce
+# Privapp-permissions whitelist
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.control_privapp_permissions=log
 
 # Enable on-access verification of priv apps. This requires fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -71,7 +70,7 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += chre_test_client
 endif
 
-LOCAL_PATH := device/google/bluecross
+LOCAL_PATH := device/google/crosshatch
 SRC_MEDIA_HAL_DIR := hardware/qcom/media/sdm845
 SRC_DISPLAY_HAL_DIR := hardware/qcom/display/sdm845
 
@@ -119,6 +118,10 @@ PRODUCT_COPY_FILES += \
 # TODO: b/67205273
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/init.edge_sense.sh:$(TARGET_COPY_OUT_VENDOR)/bin/init.edge_sense.sh
+
+# This adds an initialization script to apply custom init.rc entries
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/init.custom.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/hw/init.custom.rc \
 
 ifeq (,$(filter %_xr,$(TARGET_PRODUCT)))
   PRODUCT_COPY_FILES += \
@@ -442,12 +445,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.se.omapi.ese.xml:$(TARGET_COPY_OUT_VENDOR)/odm/etc/permissions/sku_G013D/android.hardware.se.omapi.ese.xml
 
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/nfc/com.google.hardware.pixel.japan.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_G013B/com.google.hardware.pixel.japan.xml \
-    device/google/bluecross/nfc/com.google.hardware.pixel.japan.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_G013D/com.google.hardware.pixel.japan.xml
+    device/google/crosshatch/nfc/com.google.hardware.pixel.japan.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_G013B/com.google.hardware.pixel.japan.xml \
+    device/google/crosshatch/nfc/com.google.hardware.pixel.japan.xml:$(TARGET_COPY_OUT_ODM)/etc/permissions/sku_G013D/com.google.hardware.pixel.japan.xml
 
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf \
-    device/google/bluecross/nfc/libese-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libese-nxp.conf
+    device/google/crosshatch/nfc/libnfc-nci.conf:$(TARGET_COPY_OUT_PRODUCT)/etc/libnfc-nci.conf \
+    device/google/crosshatch/nfc/libese-nxp.conf:$(TARGET_COPY_OUT_VENDOR)/etc/libese-nxp.conf
 
 PRODUCT_PACKAGES += \
     android.hardware.usb@1.1-service.crosshatch
@@ -505,7 +508,7 @@ PRODUCT_COPY_FILES += \
 
 # Default permission grant exceptions
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/default-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions.xml
+    device/google/crosshatch/default-permissions.xml:$(TARGET_COPY_OUT_VENDOR)/etc/default-permissions/default-permissions.xml
 
 PRODUCT_PACKAGES += \
     fs_config_dirs \
@@ -651,20 +654,20 @@ PRODUCT_PROPERTY_OVERRIDES += \
 endif
 
 # Setup Dalvik VM configurations
-$(call inherit-product, frameworks/native/build/phone-xhdpi-4096-dalvik-heap.mk)
+$(call inherit-product, vendor/pixeldust/configs/phone-xhdpi-4096-dalvik-heap.mk)
 
 ifneq ($(filter %_mainline,$(TARGET_PRODUCT)),)
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/fstab.mainline.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM) \
-    device/google/bluecross/fstab.mainline.hardware:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
+    device/google/crosshatch/fstab.mainline.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM) \
+    device/google/crosshatch/fstab.mainline.hardware:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
 else
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/fstab.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM) \
-    device/google/bluecross/fstab.hardware:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
+    device/google/crosshatch/fstab.hardware:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.$(PRODUCT_PLATFORM) \
+    device/google/crosshatch/fstab.hardware:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.$(PRODUCT_PLATFORM)
 endif
 
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/fstab.persist:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.persist
+    device/google/crosshatch/fstab.persist:$(TARGET_COPY_OUT_VENDOR)/etc/fstab.persist
 
 # Use the default charger mode images
 PRODUCT_PACKAGES += \
@@ -728,7 +731,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Easel device feature
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/permissions/com.google.hardware.camera.easel_2018.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.google.hardware.camera.easel_2018.xml
+    device/google/crosshatch/permissions/com.google.hardware.camera.easel_2018.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/com.google.hardware.camera.easel_2018.xml
 
 # Fingerprint
 PRODUCT_PACKAGES += \
@@ -741,62 +744,61 @@ PRODUCT_COPY_FILES += \
 
 # DRV2624 Haptics Waveform
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/vibrator/drv2624/drv2624.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/drv2624.bin
+    device/google/crosshatch/vibrator/drv2624/drv2624.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/drv2624.bin
 
 # CS40L20 Haptics Waveform & Firmware
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/vibrator/cs40l20/cs40l20.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs40l20.wmfw \
-    device/google/bluecross/vibrator/cs40l20/cs40l20.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs40l20.bin
+    device/google/crosshatch/vibrator/cs40l20/cs40l20.wmfw:$(TARGET_COPY_OUT_VENDOR)/firmware/cs40l20.wmfw \
+    device/google/crosshatch/vibrator/cs40l20/cs40l20.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/cs40l20.bin
 
-PRODUCT_VENDOR_KERNEL_HEADERS := device/google/bluecross/sdm845/kernel-headers
+PRODUCT_VENDOR_KERNEL_HEADERS := device/google/crosshatch/sdm845/kernel-headers
 
 # Audio ACDB data
 PRODUCT_COPY_FILES += \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Bluetooth_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Bluetooth_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/General_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/General_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Global_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Global_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Handset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Handset_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Hdmi_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Hdmi_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Headset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Headset_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Speaker_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Speaker_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/Codec_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Codec_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Bluetooth_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Bluetooth_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/General_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/General_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Global_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Global_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Handset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Handset_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Hdmi_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Hdmi_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Headset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Headset_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Speaker_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Speaker_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/Codec_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Codec_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Bluetooth_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Bluetooth_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/General_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/General_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Global_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Global_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Handset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Handset_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Hdmi_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Hdmi_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Headset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Headset_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Speaker_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Speaker_cal.acdb \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/Codec_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Codec_cal.acdb \
-     device/google/bluecross/acdbdata/adsp_avs_config.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/adsp_avs_config.acdb
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Bluetooth_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Bluetooth_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/General_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/General_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Global_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Global_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Handset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Handset_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Hdmi_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Hdmi_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Headset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Headset_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Speaker_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Speaker_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/Codec_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/Codec_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Bluetooth_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Bluetooth_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/General_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/General_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Global_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Global_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Handset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Handset_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Hdmi_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Hdmi_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Headset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Headset_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Speaker_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Speaker_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/Codec_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/Codec_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Bluetooth_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Bluetooth_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/General_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/General_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Global_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Global_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Handset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Handset_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Hdmi_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Hdmi_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Headset_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Headset_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Speaker_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Speaker_cal.acdb \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/Codec_cal.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/Codec_cal.acdb \
+     device/google/crosshatch/acdbdata/adsp_avs_config.acdb:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/adsp_avs_config.acdb
 
 # Audio ACDB workspace files for QACT
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_COPY_FILES += \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/workspaceFile.qwsp \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-b1-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/workspaceFile.qwsp \
-     device/google/bluecross/acdbdata/OEM/sdm845-tavil-c1-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/workspaceFile.qwsp
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-snd-card/workspaceFile.qwsp \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-b1-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-b1-snd-card/workspaceFile.qwsp \
+     device/google/crosshatch/acdbdata/OEM/sdm845-tavil-c1-snd-card/workspaceFile.qwsp:$(TARGET_COPY_OUT_VENDOR)/etc/acdbdata/OEM/sdm845-tavil-c1-snd-card/workspaceFile.qwsp
 endif
 
 # CS35L36 Speaker Tuning
 PRODUCT_COPY_FILES += \
-    device/google/bluecross/audio/crus_sp_config_b1_rx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_b1_rx.bin \
-    device/google/bluecross/audio/crus_sp_config_b1_tx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_b1_tx.bin \
-    device/google/bluecross/audio/crus_sp_config_c1_rx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_c1_rx.bin \
-    device/google/bluecross/audio/crus_sp_config_c1_tx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_c1_tx.bin
+    device/google/crosshatch/audio/crus_sp_config_b1_rx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_b1_rx.bin \
+    device/google/crosshatch/audio/crus_sp_config_b1_tx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_b1_tx.bin \
+    device/google/crosshatch/audio/crus_sp_config_c1_rx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_c1_rx.bin \
+    device/google/crosshatch/audio/crus_sp_config_c1_tx.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/crus_sp_config_c1_tx.bin
 
 # Keymaster configuration
 PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml \
-    frameworks/native/data/etc/android.hardware.device_unique_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.device_unique_attestation.xml
+    frameworks/native/data/etc/android.software.device_id_attestation.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.software.device_id_attestation.xml
 
 # Enable modem logging
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -823,7 +825,7 @@ endif
 
 # Preopt SystemUI
 PRODUCT_DEXPREOPT_SPEED_APPS += \
-    SystemUIGoogle
+    SystemUI
 
 # Enable stats logging in LMKD
 TARGET_LMKD_STATS_LOG := true
@@ -856,10 +858,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.svn=48
-
-#PRODUCT_PRODUCT_PROPERTIES += \
-#    ro.adb.secure=1
+    ro.vendor.build.svn=51
 
 # pixel atrace HAL
 PRODUCT_PACKAGES += \
@@ -940,6 +939,7 @@ PRODUCT_PACKAGES += \
     libnosprotos:64 \
     libnos_transport:64 \
     libpuresoftkeymasterdevice.vendor:64 \
+    libsdsprpc \
     libsensorndkbridge \
     libsoft_attestation_cert.vendor:64 \
     libteeui_hal_support.vendor:64 \
@@ -954,7 +954,16 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.0.vendor \
     vendor.display.config@1.1.vendor \
     vendor.display.config@1.2.vendor \
-    vendor.display.config@1.3.vendor
+    vendor.display.config@1.3.vendor \
+    vendor.display.config@1.0 \
+    vendor.display.config@1.1 \
+    vendor.display.config@1.2 \
+    vendor.display.config@1.3 \
+    vendor.display.config@1.4 \
+    vendor.display.config@1.5 \
+    vendor.display.config@1.6 \
+    vendor.display.config@1.7 \
+    vendor.display.config@1.8
 
 # EUICC
 PRODUCT_COPY_FILES += \
@@ -966,11 +975,11 @@ PRODUCT_PACKAGES += \
     PresencePolling \
     RcsService
 
-# Shared java libs
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras
-
 # Enable blurs
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1 \
     ro.sf.blurs_are_expensive=1
+
+# Force triple frame buffers
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.surface_flinger.max_frame_buffer_acquired_buffers=3

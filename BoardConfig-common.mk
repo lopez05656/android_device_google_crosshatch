@@ -14,32 +14,32 @@
 # limitations under the License.
 #
 
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
+
 include build/make/target/board/BoardConfigMainlineCommon.mk
 
 TARGET_BOARD_PLATFORM := sdm845
-TARGET_BOARD_INFO_FILE := device/google/bluecross/board-info.txt
+TARGET_BOARD_INFO_FILE := device/google/crosshatch/board-info.txt
 USES_DEVICE_GOOGLE_B1C1 := true
 
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-2a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := cortex-a75
+TARGET_CPU_VARIANT := kryo385
 TARGET_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a75
+TARGET_2ND_CPU_VARIANT := kryo385
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
-TARGET_BOARD_COMMON_PATH := device/google/bluecross/sdm845
+TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
 
 BUILD_BROKEN_DUP_RULES := true
-BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
-BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
-BUILD_BROKEN_PREBUILT_ELF_FILES := true
 
 BOARD_KERNEL_CMDLINE += console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 printk.devkmsg=on
 BOARD_KERNEL_CMDLINE += msm_rtb.filter=0x237
@@ -50,8 +50,10 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
+TARGET_KERNEL_CLANG_VERSION := latest
+TARGET_KERNEL_SOURCE := kernel/google/bluecross
 TARGET_KERNEL_CONFIG := b1c1_defconfig
 BOARD_KERNEL_IMAGE_NAME := Image.lz4
 
@@ -93,11 +95,11 @@ AB_OTA_PARTITIONS += \
 endif
 
 # Partitions (listed in the file) to be wiped under recovery.
-TARGET_RECOVERY_WIPE := device/google/bluecross/recovery.wipe
+TARGET_RECOVERY_WIPE := device/google/crosshatch/recovery.wipe
 ifneq ($(filter %_mainline,$(TARGET_PRODUCT)),)
-TARGET_RECOVERY_FSTAB := device/google/bluecross/fstab.mainline.hardware
+TARGET_RECOVERY_FSTAB := device/google/crosshatch/fstab.mainline.hardware
 else
-TARGET_RECOVERY_FSTAB := device/google/bluecross/fstab.hardware
+TARGET_RECOVERY_FSTAB := device/google/crosshatch/fstab.hardware
 endif
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
 TARGET_RECOVERY_UI_LIB := \
@@ -206,7 +208,7 @@ endif
 
 include device/google/crosshatch-sepolicy/crosshatch-sepolicy.mk
 
-TARGET_FS_CONFIG_GEN := device/google/bluecross/config.fs
+TARGET_FS_CONFIG_GEN := device/google/crosshatch/config.fs
 
 QCOM_BOARD_PLATFORMS += sdm845
 BOARD_HAVE_BLUETOOTH_QCOM := true
@@ -281,14 +283,14 @@ TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DRM_PP := true
 
 # Vendor Interface Manifest
-DEVICE_MANIFEST_FILE := device/google/bluecross/manifest.xml
-DEVICE_MATRIX_FILE := device/google/bluecross/compatibility_matrix.xml
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/bluecross/device_framework_matrix.xml
+DEVICE_MANIFEST_FILE := device/google/crosshatch/manifest.xml
+DEVICE_MATRIX_FILE := device/google/crosshatch/compatibility_matrix.xml
+DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/crosshatch/device_framework_matrix.xml
 
 # Userdebug only Vendor Interface Manifest
 ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
-DEVICE_FRAMEWORK_MANIFEST_FILE += device/google/bluecross/framework_manifest_userdebug.xml
-DEVICE_MATRIX_FILE += device/google/bluecross/compatibility_matrix_userdebug.xml
+DEVICE_FRAMEWORK_MANIFEST_FILE += device/google/crosshatch/framework_manifest_userdebug.xml
+DEVICE_MATRIX_FILE += device/google/crosshatch/compatibility_matrix_userdebug.xml
 endif
 
 ODM_MANIFEST_SKUS += \
@@ -297,10 +299,10 @@ ODM_MANIFEST_SKUS += \
     G013C \
     G013D \
 
-ODM_MANIFEST_G013A_FILES := device/google/bluecross/nfc/manifest_se_SIM1.xml
-ODM_MANIFEST_G013B_FILES := device/google/bluecross/nfc/manifest_se_eSE1.xml
-ODM_MANIFEST_G013C_FILES := device/google/bluecross/nfc/manifest_se_SIM1.xml
-ODM_MANIFEST_G013D_FILES := device/google/bluecross/nfc/manifest_se_eSE1.xml
+ODM_MANIFEST_G013A_FILES := device/google/crosshatch/nfc/manifest_se_SIM1.xml
+ODM_MANIFEST_G013B_FILES := device/google/crosshatch/nfc/manifest_se_eSE1.xml
+ODM_MANIFEST_G013C_FILES := device/google/crosshatch/nfc/manifest_se_SIM1.xml
+ODM_MANIFEST_G013D_FILES := device/google/crosshatch/nfc/manifest_se_eSE1.xml
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -362,6 +364,8 @@ TARGET_USES_MKE2FS := true
 #BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel
 #endif
 
+# ConfirmationUI
+BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/confirmationui_hal
+
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/b1c1-setup.sh
--include vendor/google_devices/crosshatch/proprietary/BoardConfigVendor.mk
