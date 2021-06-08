@@ -14,6 +14,12 @@
 # limitations under the License.
 #
 
+PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/evolution_crosshatch.mk \
+    $(LOCAL_DIR)/evolution_blueline.mk \
+    $(LOCAL_DIR)/aosp_crosshatch_hwasan.mk \
+    $(LOCAL_DIR)/aosp_blueline_hwasan.mk 
+
 COMMON_LUNCH_CHOICES := \
     evolution_crosshatch-userdebug \
     evolution_blueline-userdebug
