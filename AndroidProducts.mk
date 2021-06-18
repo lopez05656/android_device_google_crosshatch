@@ -1,5 +1,6 @@
 #
 # Copyright 2015 The Android Open Source Project
+# Copyright 2018 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,12 +15,10 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/evolution_crosshatch.mk \
-    $(LOCAL_DIR)/evolution_blueline.mk \
+PRODUCT_MAKEFILES += \
+    $(LOCAL_DIR)/bliss_blueline.mk \
+    $(LOCAL_DIR)/bliss_crosshatch.mk \
     $(LOCAL_DIR)/aosp_crosshatch_hwasan.mk \
-    $(LOCAL_DIR)/aosp_blueline_hwasan.mk 
+    $(LOCAL_DIR)/aosp_blueline_hwasan.mk
 
-COMMON_LUNCH_CHOICES := \
-    evolution_crosshatch-userdebug \
-    evolution_blueline-userdebug
+

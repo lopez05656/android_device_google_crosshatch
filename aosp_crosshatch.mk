@@ -18,7 +18,7 @@
 # All components inherited here go to system image
 #
 $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/mainline_system.mk)
 
 # Enable mainline checking
 # TODO(b/138706293): enable Enable mainline checking later
@@ -49,14 +49,14 @@ PRODUCT_COPY_FILES += $(LOCAL_PATH)/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/
 # STOPSHIP deal with Qualcomm stuff later
 # PRODUCT_RESTRICT_VENDOR_FILES := all
 
-PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+# Keep the VNDK in /system partition for non-REL branches as these branches are
+# expected to have stable API/ABI surfaces.
+ifneq (REL,$(PLATFORM_VERSION_CODENAME))
+  PRODUCT_PACKAGES += com.android.vndk.current.on_vendor
+endif
 
 PRODUCT_MANUFACTURER := Google
 PRODUCT_NAME := aosp_crosshatch
 PRODUCT_DEVICE := crosshatch
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3 XL
-
-LOCAL_PATH := device/google/crosshatch
-
-TARGET_SYSTEM_PROP := $(LOCAL_PATH)/crosshatch.prop

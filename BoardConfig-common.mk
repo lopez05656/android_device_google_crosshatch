@@ -14,9 +14,6 @@
 # limitations under the License.
 #
 
-BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
-BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
-
 include build/make/target/board/BoardConfigMainlineCommon.mk
 
 TARGET_BOARD_PLATFORM := sdm845
@@ -24,17 +21,17 @@ TARGET_BOARD_INFO_FILE := device/google/crosshatch/board-info.txt
 USES_DEVICE_GOOGLE_B1C1 := true
 
 TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-2a
+TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := kryo385
+TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv8-2a
+TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := kryo385
+TARGET_2ND_CPU_VARIANT := generic
 TARGET_2ND_CPU_VARIANT_RUNTIME := kryo385
 
 TARGET_BOARD_COMMON_PATH := device/google/crosshatch/sdm845
@@ -50,10 +47,6 @@ BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += usbcore.autosuspend=7
 BOARD_KERNEL_CMDLINE += loop.max_part=7
 BOARD_KERNEL_CMDLINE += androidboot.boot_devices=soc/1d84000.ufshc
-TARGET_KERNEL_CLANG_COMPILE := true
-TARGET_KERNEL_SOURCE := device/google/crosshatch-kernel
-TARGET_KERNEL_CONFIG := b1c1_defconfig
-BOARD_KERNEL_IMAGE_NAME := Image.lz4
 
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -77,8 +70,7 @@ AB_OTA_PARTITIONS += \
     boot \
     system \
     vbmeta \
-    dtbo \
-    vendor
+    dtbo
 
 # Skip product and system_ext partition for nodap build
 ifeq ($(filter %_nodap,$(TARGET_PRODUCT)),)
@@ -110,7 +102,6 @@ BOARD_AVB_VBMETA_SYSTEM_KEY_PATH := external/avb/test/data/testkey_rsa2048.pem
 BOARD_AVB_VBMETA_SYSTEM_ALGORITHM := SHA256_RSA2048
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_VBMETA_SYSTEM_ROLLBACK_INDEX_LOCATION := 1
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS="--set_hashtree_disabled_flag"
 endif
 
 # product.img
@@ -157,12 +148,6 @@ ifeq ($(PRODUCT_NO_PRODUCT_PARTITION), true)
 TARGET_COPY_OUT_SYSTEM_EXT := system/system_ext
 endif
 
-# vendor.img
-ifneq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
-BOARD_VENDORIMAGE_PARTITION_SIZE := 805306368
-endif
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
-
 ifeq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
 BOARD_SUPER_PARTITION_GROUPS := google_dynamic_partitions
 BOARD_GOOGLE_DYNAMIC_PARTITIONS_PARTITION_LIST := \
@@ -204,7 +189,7 @@ ifeq ($(PRODUCT_USE_QC_SPECIFIC_SYMLINKS), true)
 BOARD_ROOT_EXTRA_SYMLINKS += /vendor/firmware_mnt:/firmware
 endif
 
-include device/google/crosshatch-sepolicy/crosshatch-sepolicy.mk
+include device/google/crosshatch/sepolicy/crosshatch-sepolicy.mk
 
 TARGET_FS_CONFIG_GEN := device/google/crosshatch/config.fs
 
@@ -249,7 +234,7 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_$(BOARD_WLAN_DEVICE)
 WIFI_HIDL_FEATURE_AWARE := true
-WIFI_HIDL_FEATURE_DUAL_INTERFACE := true
+WIFI_HIDL_FEATURE_DUAL_INTERFACE:= true
 WIFI_FEATURE_WIFI_EXT_HAL := true
 WIFI_FEATURE_IMU_DETECTION := false
 WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
@@ -286,7 +271,7 @@ DEVICE_MATRIX_FILE := device/google/crosshatch/compatibility_matrix.xml
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := device/google/crosshatch/device_framework_matrix.xml
 
 # Userdebug only Vendor Interface Manifest
-ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
+ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 DEVICE_FRAMEWORK_MANIFEST_FILE += device/google/crosshatch/framework_manifest_userdebug.xml
 DEVICE_MATRIX_FILE += device/google/crosshatch/compatibility_matrix_userdebug.xml
 endif
@@ -305,65 +290,6 @@ ODM_MANIFEST_G013D_FILES := device/google/crosshatch/nfc/manifest_se_eSE1.xml
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
 
-# Kernel modules
-#ifeq (,$(filter-out blueline_kasan crosshatch_kasan, $(TARGET_PRODUCT)))
-#BOARD_VENDOR_KERNEL_MODULES += \
-#    $(wildcard device/google/crosshatch-kernel/kasan/*.ko)
-#else ifeq (,$(filter-out blueline_kernel_debug_memory crosshatch_kernel_debug_memory, $(TARGET_PRODUCT)))
-#BOARD_VENDOR_KERNEL_MODULES += \
-#    $(wildcard device/google/crosshatch-kernel/debug_memory/*.ko)
-#else ifeq (,$(filter-out blueline_kernel_debug_locking crosshatch_kernel_debug_locking, $(TARGET_PRODUCT)))
-#BOARD_VENDOR_KERNEL_MODULES += \
-#    $(wildcard device/google/crosshatch-kernel/debug_locking/*.ko)
-#else ifeq (,$(filter-out blueline_kernel_debug_hang crosshatch_kernel_debug_hang, $(TARGET_PRODUCT)))
-#BOARD_VENDOR_KERNEL_MODULES += \
-#    $(wildcard device/google/crosshatch-kernel/debug_hang/*.ko)
-#else ifeq (,$(filter-out blueline_kernel_debug_api crosshatch_kernel_debug_api, $(TARGET_PRODUCT)))
-#BOARD_VENDOR_KERNEL_MODULES += \
-#    $(wildcard device/google/crosshatch-kernel/debug_api/*.ko)
-#else ifneq (,$(TARGET_PREBUILT_KERNEL))
-    # If TARGET_PREBUILT_KERNEL is set, check whether there are modules packaged with that kernel
-    # image. If so, use them, otherwise fall back to the default directory.
-#    TARGET_PREBUILT_KERNEL_PREBUILT_VENDOR_KERNEL_MODULES := \
-#        $(wildcard $(dir $(TARGET_PREBUILT_KERNEL))/*.ko)
-#    ifneq (,$(TARGET_PREBUILT_KERNEL_PREBUILT_VENDOR_KERNEL_MODULES))
-#        BOARD_VENDOR_KERNEL_MODULES += $(TARGET_PREBUILT_KERNEL_PREBUILT_VENDOR_KERNEL_MODULES)
-#    else
-#        BOARD_VENDOR_KERNEL_MODULES += $(wildcard device/google/crosshatch-kernel/*.ko)
-#    endif
-    # Do NOT delete TARGET_PREBUILT..., it will lead to empty BOARD_VENDOR_KERNEL_MODULES.
-#else
-#BOARD_VENDOR_KERNEL_MODULES += \
-#    $(wildcard device/google/crosshatch-kernel/*.ko)
-#endif
-
-# DTB
-#ifeq (,$(filter-out blueline_kasan crosshatch_kasan, $(TARGET_PRODUCT)))
-#BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel/kasan
-#else ifeq (,$(filter-out blueline_kernel_debug_memory crosshatch_kernel_debug_memory, $(TARGET_PRODUCT)))
-#BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel/debug_memory
-#else ifeq (,$(filter-out blueline_kernel_debug_locking crosshatch_kernel_debug_locking, $(TARGET_PRODUCT)))
-#BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel/debug_locking
-#else ifeq (,$(filter-out blueline_kernel_debug_hang crosshatch_kernel_debug_hang, $(TARGET_PRODUCT)))
-#BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel/debug_hang
-#else ifeq (,$(filter-out blueline_kernel_debug_api crosshatch_kernel_debug_api, $(TARGET_PRODUCT)))
-#BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel/debug_api
-#else ifneq (,$(TARGET_PREBUILT_KERNEL))
-    # If TARGET_PREBUILT_KERNEL is set, check whether there are dtb files packaged with that kernel
-    # image. If so, use them, otherwise fall back to the default directory.
-#    PREBUILT_PREBUILT_DTBIMAGE_DIR := $(wildcard $(dir $(TARGET_PREBUILT_KERNEL))/*.dtb)
-#    ifneq (,$(PREBUILT_PREBUILT_DTBIMAGE_DIR)
-#        BOARD_PREBUILT_DTBIMAGE_DIR := $(dir $(TARGET_PREBUILT_KERNEL))
-#    else
-#        BOARD_PREBUILT_DTBIMAGE_DIR += device/google/crosshatch-kernel
-#    endif
-#    PREBUILT_VENDOR_KERNEL_MODULES :=
-#else
-#BOARD_PREBUILT_DTBIMAGE_DIR := device/google/crosshatch-kernel
-#endif
-
-# ConfirmationUI
-BOARD_SEPOLICY_DIRS += hardware/google/pixel-sepolicy/confirmationui_hal
-
 # Testing related defines
 BOARD_PERFSETUP_SCRIPT := platform_testing/scripts/perf-setup/b1c1-setup.sh
+-include vendor/google_devices/crosshatch/proprietary/BoardConfigVendor.mk
