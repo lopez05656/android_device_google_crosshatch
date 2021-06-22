@@ -74,10 +74,6 @@ PRODUCT_PACKAGES += \
     vendor.qti.hardware.perf@1.0.vendor \
     vendor.qti.hardware.perf@2.0.vendor
 
-# Trust HAL
-PRODUCT_PACKAGES += \
-    vendor.lineage.trust@1.0-service
-
 # Utilities
 PRODUCT_PACKAGES += \
     libjson \

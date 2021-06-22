@@ -15,9 +15,6 @@ TARGET_KERNEL_SOURCE := kernel/google/msm-4.9
 
 BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
 
-# Manifests
-DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += device/google/crosshatch/lineage_compatibility_matrix.xml
-
 # vendor.img
 AB_OTA_PARTITIONS += vendor
 ifneq ($(PRODUCT_USE_DYNAMIC_PARTITIONS), true)
@@ -26,7 +23,7 @@ endif
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Reserve space for gapps install
-ifneq ($(WITH_GMS),true)
+ifneq ($(BLISS_BUILD_VARIANT),gapps)
 BOARD_PRODUCTIMAGE_EXTFS_INODE_COUNT := -1
 BOARD_PRODUCTIMAGE_PARTITION_RESERVED_SIZE := 450969600
 BOARD_SYSTEMIMAGE_EXTFS_INODE_COUNT := -1
