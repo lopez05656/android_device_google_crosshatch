@@ -54,18 +54,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     messaging
 
-# Elmyra
-PRODUCT_PACKAGES += \
-    ElmyraService
-
-# Eleven
-PRODUCT_PACKAGES += \
-    Eleven
-
-# Camera
-PRODUCT_PACKAGES += \
-    GoogleCamera
-
 ifneq (,$(filter eng, $(TARGET_BUILD_VARIANT)))
 PRODUCT_PACKAGES += chre_test_client
 endif
@@ -896,10 +884,6 @@ include hardware/google/pixel/pixelstats/device.mk
 include hardware/google/pixel/mm/device_legacy.mk
 include hardware/google/pixel/thermal/device.mk
 
-# Enable blurs
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.surface_flinger.supports_background_blur=1 \
-    ro.sf.blurs_are_expensive=1
 
 # power HAL
 -include hardware/google/pixel/power-libperfmgr/aidl/device.mk

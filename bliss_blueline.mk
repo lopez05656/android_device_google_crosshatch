@@ -25,6 +25,11 @@ $(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
 # Bootanimation
 TARGET_BOOT_ANIMATION_RES := 1440
 
+# Inherit PixelGApps
+$(call inherit-product-if-exists, vendor/gapps/config.mk)
+TARGET_GAPPS_ARCH := arm64
+TARGET_INCLUDE_STOCK_ARCORE := true
+
 ## Device identifier. This must come after all inclusions
 PRODUCT_BRAND := google
 PRODUCT_DEVICE := blueline

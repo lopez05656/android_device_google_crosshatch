@@ -40,6 +40,14 @@ PRODUCT_PACKAGES += \
     libhidltransport.vendor \
     libhwbinder.vendor
 
+# Eleven
+PRODUCT_PACKAGES += \
+    Eleven
+
+# Camera
+PRODUCT_PACKAGES += \
+    GoogleCamera
+
 # Keymaster
 PRODUCT_PACKAGES += \
     android.hardware.identity-support-lib.vendor:64 \
