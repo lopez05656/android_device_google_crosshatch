@@ -26,8 +26,10 @@ PRODUCT_MAKEFILES += \
     $(LOCAL_DIR)/bliss_crosshatch.mk
 
 COMMON_LUNCH_CHOICES := \
-    aosp_crosshatch-userdebug \
+    bliss_crosshatch-user \
     bliss_crosshatch-userdebug \
+    bliss_crosshatch-eng \
     bliss_blueline-userdebug \
-    aosp_blueline-userdebug
+    bliss_blueline-user \
+    bliss_blueline-eng
 
