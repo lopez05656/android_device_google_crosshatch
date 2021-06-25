@@ -1,5 +1,4 @@
-#
-# Copyright (C) 2020 The LineageOS Project
+# Copyright (C) 2018-2021 The Dirty Unicorns Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,32 +11,36 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+#
+# This file is the build configuration for an aosp Android
+# build for blueline hardware. This cleanly combines a set of
+# device-specific aspects (drivers) with a device-agnostic
+# product configuration (apps). Except for a few implementation
+# details, it only fundamentally contains few inherit-product
+# lines, aosp and du, hence its name.
 #
 
-# Inherit some common bliss stuff.
+# Include Bliss common configuration
 $(call inherit-product, vendor/bliss/config/common_full_phone.mk)
 
-# Inherit device configuration
+# Inherit from those products. Most specific first.
 $(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
 
--include device/google/crosshatch/device.mk
-
-# Bootanimation
-TARGET_BOOT_ANIMATION_RES := 1440
+PRODUCT_NAME := bliss_blueline
+PRODUCT_DEVICE := blueline
+PRODUCT_BRAND := google
+PRODUCT_MODEL := Pixel 3
+PRODUCT_MANUFACTURER := Google
 
 # Inherit PixelGApps
 $(call inherit-product-if-exists, vendor/gapps/config.mk)
-TARGET_GAPPS_ARCH := arm64
 TARGET_INCLUDE_STOCK_ARCORE := true
-
-## Device identifier. This must come after all inclusions
-PRODUCT_BRAND := google
-PRODUCT_DEVICE := blueline
-PRODUCT_MODEL := Pixel 3
-PRODUCT_NAME := bliss_blueline
-TARGET_MANUFACTURER := Google
+TARGET_INCLUDE_WIFI_EXT := true
+TARGET_BOOT_ANIMATION_RES := 1440
+TARGET_GAPPS_ARCH := arm64
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="blueline-user 11 RQ3A.210605.005 7349499 release-keys"
+    PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
 
 $(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)

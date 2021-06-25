@@ -743,7 +743,6 @@ service bugreport /system/bin/dumpstate -d -p -z
     class main
     disabled
     oneshot
-    keycodes 114 115 116
 
 service devstart_sh /vendor/bin/init.qcom.devstart.sh
     class main
@@ -870,21 +869,17 @@ service vendor.theme_clear /vendor/bin/misc_writer --clear-dark-theme
     disabled
     oneshot
 
-# Set the dark splash on init
-on init
-    start vendor.theme_set
-
 # Set dark boot flag on dark mode (UiModeManager.MODE_NIGHT_YES == 2).
-#on property:persist.sys.theme=2
-#    start vendor.theme_set
+on property:persist.sys.theme=2
+    start vendor.theme_set
 
 # Clear the dark boot flag on light mode (UiModeManager.MODE_NIGHT_NO == 1) or auto mode
 # (UiModeManager.MODE_NIGHT_AUTO == 0).
-#on property:persist.sys.theme=1
-#    start vendor.theme_clear
+on property:persist.sys.theme=1
+    start vendor.theme_clear
 
-#on property:persist.sys.theme=0
-#    start vendor.theme_clear
+on property:persist.sys.theme=0
+    start vendor.theme_clear
 
 on init && property:ro.boot.slot_successful=no
     write /sys/module/msm_poweroff/parameters/warm_reset 1
