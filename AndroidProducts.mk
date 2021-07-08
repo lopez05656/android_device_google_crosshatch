@@ -15,11 +15,11 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/bliss_crosshatch.mk \
-    $(LOCAL_DIR)/bliss_blueline.mk \
+    $(LOCAL_DIR)/nad_crosshatch.mk \
+    $(LOCAL_DIR)/nad_blueline.mk \
     $(LOCAL_DIR)/aosp_crosshatch_hwasan.mk \
     $(LOCAL_DIR)/aosp_blueline_hwasan.mk 
 
 COMMON_LUNCH_CHOICES := \
-    bliss_crosshatch-userdebug \
-    bliss_blueline-userdebug
+    nad_crosshatch-userdebug \
+    nad_blueline-userdebug

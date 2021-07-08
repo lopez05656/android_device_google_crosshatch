@@ -21,26 +21,27 @@
 # lines, aosp and du, hence its name.
 #
 
-# Include Bliss common configuration
-$(call inherit-product, vendor/bliss/config/common_full_phone.mk)
+# Inherit some common Nusantara stuff.
+$(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
+$(call inherit-product-if-exists, packages/apps/NusantaraParts/nadproject.mk)
+TARGET_BOOT_ANIMATION_RES := 1440
+USE_PIXEL_CHARGING := true
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/google/crosshatch/aosp_crosshatch.mk)
+$(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
 
-PRODUCT_NAME := bliss_crosshatch
-PRODUCT_DEVICE := crosshatch
+PRODUCT_NAME := nad_blueline
+PRODUCT_DEVICE := blueline
 PRODUCT_BRAND := google
-PRODUCT_MODEL := Pixel 3 XL
+PRODUCT_MODEL := Pixel 3
 PRODUCT_MANUFACTURER := Google
 
 # Inherit PixelGApps
-$(call inherit-product-if-exists, vendor/gapps/config.mk)
 TARGET_INCLUDE_STOCK_ARCORE := true
 TARGET_INCLUDE_WIFI_EXT := true
-TARGET_BOOT_ANIMATION_RES := 1440
 TARGET_GAPPS_ARCH := arm64
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="crosshatch-user 11 RQ2A.210405.005 7181113 release-keys"
+    PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
 
-$(call inherit-product-if-exists, vendor/google/crosshatch/crosshatch-vendor.mk)
+$(call inherit-product-if-exists, vendor/google/blueline/blueline-vendor.mk)
