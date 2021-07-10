@@ -50,6 +50,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_BOARD_PLATFORM := sdm845
 PRODUCT_USES_QCOM_HARDWARE := true
 
+# Blur
+TARGET_USES_BLUR := true
+
 # Enable on-access verification of priv apps. This requires fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.apk_verity.mode=1
