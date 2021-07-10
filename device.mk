@@ -46,6 +46,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.control_privapp_permissions=log
 
+# Board
+PRODUCT_BOARD_PLATFORM := sdm845
+PRODUCT_USES_QCOM_HARDWARE := true
+
 # Enable on-access verification of priv apps. This requires fs-verity support in kernel.
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.apk_verity.mode=1
@@ -979,6 +983,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.surface_flinger.supports_background_blur=1 \
     ro.sf.blurs_are_expensive=1
+
+# ShapeShift specific properties
+PRODUCT_PRODUCT_PROPERTIES += \
+  ro.ssos.cpu=SDM845
 
 # Force triple frame buffers
 PRODUCT_PRODUCT_PROPERTIES += \
