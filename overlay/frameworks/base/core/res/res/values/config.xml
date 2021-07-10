@@ -281,6 +281,12 @@
     <!-- Flag specifying whether WFC over IMS is availasble on device -->
     <bool name="config_device_wfc_ims_available">true</bool>
 
+ <!-- Whether the device supports Smart Pixels -->
+ <bool name="config_enableSmartPixels">true</bool>    
+
+  <!-- If true, the display will be shifted around in ambient mode. -->
+  <bool name="config_enableBurnInProtection">true</bool>
+
     <!-- Flag specifying whether WFC over IMS should be available for carrier: independent of
         carrier provisioning. If false: hard disabled. If true: then depends on carrier
         provisioning, availability etc -->
