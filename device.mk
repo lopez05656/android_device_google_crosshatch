@@ -71,8 +71,8 @@ PRODUCT_PACKAGES += chre_test_client
 endif
 
 LOCAL_PATH := device/google/crosshatch
-SRC_MEDIA_HAL_DIR := hardware/qcom-caf/media/sdm845
-SRC_DISPLAY_HAL_DIR := hardware/qcom-caf/display/sdm845
+SRC_MEDIA_HAL_DIR := hardware/qcom/media/sdm845
+SRC_DISPLAY_HAL_DIR := hardware/qcom/display/sdm845
 
 TARGET_PRODUCT_PROP := $(LOCAL_PATH)/product.prop
 
@@ -858,7 +858,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 
 # Increment the SVN for any official public releases
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.svn=48
+    ro.vendor.build.svn=51
 
 # pixel atrace HAL
 PRODUCT_PACKAGES += \
@@ -964,10 +964,6 @@ PRODUCT_PACKAGES += \
     vendor.display.config@1.6 \
     vendor.display.config@1.7 \
     vendor.display.config@1.8
-
-# Soong namespaces
-PRODUCT_BOARD_PLATFORM := sdm845
-PRODUCT_USES_QCOM_HARDWARE := true
 
 # EUICC
 PRODUCT_COPY_FILES += \

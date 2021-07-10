@@ -186,11 +186,6 @@
         <item>"mobile_emergency,15,0,2,-1,true</item>
     </string-array>
 
-    <!-- Smart charge sysfs node and value for suspend/resume charging-->
-    <string name="config_SmartChargingSysfsNode" translatable="false">/sys/class/power_supply/battery/input_suspend</string>
-    <string name="config_SmartChargingSuspendValue" translatable="false">1</string>
-    <string name="config_SmartChargingResumeValue" translatable="false">0</string>
-
     <!-- This string array should be overridden by the device to present a list of radio
          attributes.  This is used by the connectivity manager to decide which networks can coexist
          based on the hardware -->
@@ -424,12 +419,6 @@
         <!-- ID0:Fingerprint:Strong -->
         <item>0:2:15</item>
     </string-array>
-
- <!-- Whether the device supports Smart Pixels -->
- <bool name="config_enableSmartPixels">true</bool>    
-
-  <!-- If true, the display will be shifted around in ambient mode. -->
-  <bool name="config_enableBurnInProtection">true</bool>
 
     <!-- Active Edge -->
     <bool name="config_has_elmyra">true</bool>

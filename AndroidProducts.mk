@@ -18,4 +18,8 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/ssos_crosshatch.mk \
     $(LOCAL_DIR)/ssos_blueline.mk \
     $(LOCAL_DIR)/aosp_crosshatch_hwasan.mk \
-    $(LOCAL_DIR)/aosp_blueline_hwasan.mk
+    $(LOCAL_DIR)/aosp_blueline_hwasan.mk 
+
+COMMON_LUNCH_CHOICES := \
+    ssos_crosshatch-userdebug \
+    ssos_blueline-userdebug
