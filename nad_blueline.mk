@@ -26,6 +26,7 @@ $(call inherit-product, vendor/nusantara/config/common_full_phone.mk)
 $(call inherit-product-if-exists, packages/apps/NusantaraParts/nadproject.mk)
 TARGET_BOOT_ANIMATION_RES := 1440
 USE_PIXEL_CHARGING := true
+TARGET_USES_BLUR := true
 
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
