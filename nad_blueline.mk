@@ -31,16 +31,17 @@ TARGET_USES_BLUR := true
 # Inherit from those products. Most specific first.
 $(call inherit-product, device/google/crosshatch/aosp_blueline.mk)
 
+# Gapps
+TARGET_GAPPS_ARCH := arm64
+TARGET_INCLUDE_WIFI_EXT := true
+USE_GAPPS=true
+TARGET_INCLUDE_STOCK_ARCORE := true
+
 PRODUCT_NAME := nad_blueline
 PRODUCT_DEVICE := blueline
 PRODUCT_BRAND := google
 PRODUCT_MODEL := Pixel 3
 PRODUCT_MANUFACTURER := Google
-
-# Inherit PixelGApps
-TARGET_INCLUDE_STOCK_ARCORE := true
-TARGET_INCLUDE_WIFI_EXT := true
-TARGET_GAPPS_ARCH := arm64
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="blueline-user 11 RQ2A.210405.005 7181113 release-keys"
